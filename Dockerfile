@@ -1,32 +1,29 @@
 # Stage 1: Build the Vite app
 FROM node:20-alpine AS build
 
-# Set working directory
 WORKDIR /app
 
-# Copy package.json and lock file first (better caching)
+# Copy package files
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the project
+# Copy the rest of the app
 COPY . .
 
-# Build for production
+# Build the Vite app
 RUN npm run build
 
-# Stage 2: Serve the built app using a lightweight web server
+# Stage 2: Serve with Nginx
 FROM nginx:alpine
 
-# Copy the build output to nginx html directory
-COPY --from=build /app/dist /usr/share/nginx/html
-
-# Copy a default nginx config (optional)
+# Copy custom Nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose port 80
+# Copy Vite build output
+COPY --from=build /app/dist /usr/share/nginx/html
+
 EXPOSE 80
 
-# Start nginx
 CMD ["nginx", "-g", "daemon off;"]
