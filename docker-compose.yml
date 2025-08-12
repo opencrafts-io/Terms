@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  terms:
+    build: .
+    container_name: terms
+    ports:
+      - "5173:80"
+    restart: unless-stopped
