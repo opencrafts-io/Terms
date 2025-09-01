@@ -35,8 +35,8 @@ function App() {
           <h2 className='policy-section-heading'>1. Who We Are</h2>
           <address className='company-address'>
             Open Crafts Interactive Limited <br />
-            [Your Company Address] <br />
-            P.O. Box [Your Company P.O. Box] <br />
+            Valley Road, Nairobi <br />
+            P.O. Box 17 90105 Nairobi, Kenya <br />
             Nairobi, Kenya <br />
             Phone: <a href="tel:0110877322" >0110877322</a> <br />
             Email: <a href="mailto:info@openCrafts.io" >info@openCrafts.io</a>
